@@ -35,3 +35,13 @@ def mixtral_vllm(**kwargs):
         device_map="auto",
         **kwargs
     )
+
+
+def phi3(**kwargs):
+    return HFLM(
+        pretrained="microsoft/Phi-3-mini-4k-instruct",
+        quantization_config=_default_quantization_config(),
+        device_map="auto",
+        **kwargs
+    )
+
