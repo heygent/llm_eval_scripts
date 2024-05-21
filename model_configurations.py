@@ -4,7 +4,7 @@ from lm_eval.models.huggingface import HFLM
 from lm_eval.models.vllm_causallms import VLLM
 
 
-def _default_quantization_config():
+def bnb_4bit_config():
     return BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
@@ -15,7 +15,7 @@ def _default_quantization_config():
 def mixtral(**kwargs):
     return HFLM(
         pretrained="mistralai/Mixtral-8x7B-Instruct-v0.1",
-        quantization_config=_default_quantization_config(),
+        quantization_config=bnb_4bit_config(),
         device_map="auto",
         **kwargs
     )
@@ -31,7 +31,7 @@ def mixtral_flashattention(**kwargs):
 def mixtral_vllm(**kwargs):
     return VLLM(
         pretrained="mistralai/Mixtral-8x7B-Instruct-v0.1",
-        quantization_config=_default_quantization_config(),
+        quantization_config=bnb_4bit_config(),
         device_map="auto",
         **kwargs
     )
@@ -40,7 +40,16 @@ def mixtral_vllm(**kwargs):
 def phi3(**kwargs):
     return HFLM(
         pretrained="microsoft/Phi-3-mini-4k-instruct",
-        quantization_config=_default_quantization_config(),
+        quantization_config=bnb_4bit_config(),
+        device_map="auto",
+        **kwargs
+    )
+
+
+def phi3_vllm(**kwargs):
+    return VLLM(
+        pretrained="microsoft/Phi-3-mini-4k-instruct",
+        quantization_config=bnb_4bit_config(),
         device_map="auto",
         **kwargs
     )

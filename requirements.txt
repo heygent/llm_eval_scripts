@@ -1,1 +1,5 @@
-lm-eval[vllm,hf_transfer,wandb]
+torch==2.1.0
+bitsandbytes
+lm-eval[wandb,vllm]==0.4.2
+flash-attn
+lxml
